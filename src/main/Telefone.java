@@ -1,3 +1,4 @@
+package main;
 public class Telefone {
     private String DDD;
     private String numeroTelefone;

@@ -1,3 +1,4 @@
+package main;
 public class Endereço {
     private String estado;
     private String cidade;

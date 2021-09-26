@@ -1,3 +1,4 @@
+package main;
 public class Pedido {
     private int numeroPedido;
     private Cliente clienteSelecionado;

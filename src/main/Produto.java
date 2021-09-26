@@ -1,3 +1,4 @@
+package main;
 public class Produto {
 
     protected int numeroCardapio;

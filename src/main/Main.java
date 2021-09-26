@@ -1,3 +1,4 @@
+package main;
 public class Main {
     static Cliente c1;
     static Pastel pas1;

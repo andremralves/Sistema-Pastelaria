@@ -1,3 +1,4 @@
+package main;
 public class Bebida extends Produto{
 
     public Bebida(int num, String n, String t, double p) {
