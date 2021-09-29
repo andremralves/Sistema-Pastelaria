@@ -1,5 +1,5 @@
-package main;
-public class Produto {
+package model;
+public abstract class Produto {
 
     protected int numeroCardapio;
     protected String nome;

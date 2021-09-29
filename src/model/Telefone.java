@@ -1,4 +1,4 @@
-package main;
+package model;
 public class Telefone {
     private String DDD;
     private String numeroTelefone;
