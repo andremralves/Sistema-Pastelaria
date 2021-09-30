@@ -1,11 +1,11 @@
 package model;
 public class Cliente {
     private String nome;
-    private int CPF;
+    private String CPF;
     private Telefone numTel;
     private Endereco end;
 
-    public Cliente(String nome, int CPF, Telefone t, Endereco e){
+    public Cliente(String nome, String CPF, Telefone t, Endereco e){
         this.CPF = CPF;
         this.nome = nome;
         this.numTel = t;
@@ -16,7 +16,7 @@ public class Cliente {
         return nome;
     }
 
-    public int getCPF(){
+    public String getCPF(){
         return CPF;
     }
 

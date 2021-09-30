@@ -1,13 +1,14 @@
 package controller;
 
 import model.Pastel;
+import java.util.ArrayList;
 
 public class PastelController {
 	
-	private Pastel pastelModel;
+	private ArrayList<Pastel> pasteis = new ArrayList<Pastel>();
 	
-	public PastelController(Pastel pastelModel) {
-		this.pastelModel = pastelModel;
+	public PastelController(DadosController d) {
+		this.pasteis = d.getPasteis();
 	}
 	
 	public Pastel getPastel() {

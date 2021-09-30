@@ -30,7 +30,7 @@ public class Pastel extends Produto {
         return "Numero no cardapio: " + numeroCardapio +
         		", Nome do pastel: " + nome +
         		", valor: R$" + preco +
-        		", Igredientes: " + ingredientes +
+        		", Ingredientes: " + ingredientes +
         		", Borda: " + borda;
     }
 
