@@ -1,12 +1,12 @@
 package model;
-public class Endereço {
+public class Endereco {
     private String estado;
     private String cidade;
     private String bairro;
     private String CEP;
     private int numeroCasaAp;
 
-    public Endereço(String e, String c, String b, String Cep, int n){
+    public Endereco(String e, String c, String b, String Cep, int n){
         this.estado = e;
         this.cidade = c;
         this.bairro = b;
@@ -17,7 +17,7 @@ public class Endereço {
 
     @Override
     public String toString() {
-    return "Endereço: "+ estado+ ", " +cidade+ ", " +bairro+ ", CEP ("+CEP+ "), número da residência (" +numeroCasaAp+ ")";
+    return "Endereco: "+ estado+ ", " +cidade+ ", " +bairro+ ", CEP ("+CEP+ "), número da residência (" +numeroCasaAp+ ")";
     }
 
     public String getEstado (){

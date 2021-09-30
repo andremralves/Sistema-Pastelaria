@@ -3,9 +3,9 @@ public class Cliente {
     private String nome;
     private int CPF;
     private Telefone numTel;
-    private Endereço end;
+    private Endereco end;
 
-    public Cliente(String nome, int CPF, Telefone t, Endereço e){
+    public Cliente(String nome, int CPF, Telefone t, Endereco e){
         this.CPF = CPF;
         this.nome = nome;
         this.numTel = t;
@@ -28,11 +28,11 @@ public class Cliente {
         this.numTel = numTel;
     }
 
-    public Endereço getEnd (){
+    public Endereco getEnd (){
         return end;
     }
 
-    public void setEnd (Endereço end){
+    public void setEnd (Endereco end){
         this.end = end;
     }
 
