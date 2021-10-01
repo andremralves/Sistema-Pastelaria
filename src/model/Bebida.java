@@ -17,8 +17,8 @@ public class Bebida extends Produto{
     }
     
     public String toString() {
-        return "Num. Cardápio" + numeroCardapio + 
-        		"Nome da bebida: " + nome + 
+        return "Num. Cardápio: " + numeroCardapio + 
+        		", Nome: " + nome + 
         		", valor: R$ " + preco;
     }
 }

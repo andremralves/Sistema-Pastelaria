@@ -51,4 +51,57 @@ public class Dados {
 	public void setPedidos( ArrayList<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
+	
+	//CRUD Pastel
+	public void addPastel(Pastel p) {
+		this.pasteis.add(p);
+	}
+	
+	public void editPastel(Pastel p, int pos) {
+		this.pasteis.set(pos, p);
+	}
+	
+	public void delestePastel(int pos) {
+		this.pasteis.remove(pos);
+	}
+	
+	//CRUD Bebida
+	public void addBebida(Bebida b) {
+		this.bebidas.add(b);
+	}
+	
+	public void editBebida(Bebida b, int pos) {
+		this.bebidas.set(pos, b);
+	}
+	
+	public void delesteBebida(int pos) {
+		this.bebidas.remove(pos);
+	}
+	
+	//CRUD Cliente
+	public void AddCliente(Cliente c) {
+		this.clientes.add(c);
+	}
+	
+	public void editCliente(Cliente c, int pos) {
+		this.clientes.set(pos, c);
+	}
+	
+	public void delesteCliente(int pos) {
+		this.clientes.remove(pos);
+	}
+	
+	//CRUD Pedidos
+	public void AddPedido(Pedido p) {
+		this.pedidos.add(p);
+	}
+	
+	public void editPedido(Pedido p, int pos) {
+		this.pedidos.set(pos, p);
+	}
+	
+	public void delestePedido(int pos) {
+		this.pedidos.remove(pos);
+	}
+	
 }

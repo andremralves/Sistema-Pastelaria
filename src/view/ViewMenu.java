@@ -46,7 +46,7 @@ public class ViewMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == cliente)
-			new ViewCliente();
+			new ViewCliente().ShowViewCliente(dados);;
 		
 		if(src == pedidos)
 			new ViewPedido();

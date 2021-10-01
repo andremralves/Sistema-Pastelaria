@@ -28,7 +28,7 @@ public class Pastel extends Produto {
     
     public String toString() {
         return "Num. Cardápio: " + numeroCardapio +
-        		", Nome do pastel: " + nome +
+        		", Nome: " + nome +
         		", valor: R$" + preco;
     }
 

@@ -41,6 +41,6 @@ public class Cliente {
     }
 
     public String toString() {
-        return "Nome: " +nome+ ", CPF: " +CPF+ ", Telefone: " +numTel+ ", EndereÃ§o: " +end;
+        return "Nome: " +nome+ ", CPF: " +CPF+ ", Telefone: " +numTel+ ", Endereço: " +end;
     }
 }

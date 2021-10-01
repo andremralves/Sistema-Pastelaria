@@ -51,5 +51,13 @@ public class Endereco {
     public void setCEP (String cep){
         this.CEP = cep;
     }
+    
+    public int getNumCasaAp (){
+        return numeroCasaAp;
+    }
+
+    public void setCEP (int numeroCasaAp){
+        this.numeroCasaAp = numeroCasaAp;
+    }
 
 }

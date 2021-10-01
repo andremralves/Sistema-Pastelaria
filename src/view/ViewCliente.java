@@ -1,63 +1,74 @@
 package view;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import javax.swing.plaf.DimensionUIResource;
+import controller.*;
 
-public class ViewCliente {
+public class ViewCliente implements ActionListener, ListSelectionListener {
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Menu Cliente");
-		frame.setSize(350, 250);
-
-
-		JPanel panel = new JPanel();
-		frame.add(panel);
-		placeComponents(panel);
-
-		frame.setVisible(true);
-	}
-	private static void placeComponents(JPanel panel) {
-
-		panel.setLayout(null);
-
-		JLabel nomeLabel = new JLabel("Nome do Cliente");
-		nomeLabel.setBounds(10, 10, 180, 25);
-		panel.add(nomeLabel);
-
-		JTextField nomeText = new JTextField(20);
-		nomeText.setBounds(110, 10, 170, 25);
-		panel.add(nomeText);
-
-		JLabel cpfLabel = new JLabel("CPF do Cliente");
-		cpfLabel.setBounds(10, 40, 160, 25);
-		panel.add(cpfLabel);
+		private static JFrame frame = new JFrame("Janela de Cliente");
+		private static JLabel title = new JLabel("Clientes:");
+		private static JButton cadastraNome = new JButton("Cadastrar");		
+		private static JButton refresh = new JButton("Refresh");
+		private JList<String> listaCliente;
+		private JScrollPane scrollCliente;
+		private String[] listaNomeCliente = new String[100];
+		private static DadosController dados;
 		
-		JTextField cpfText = new JTextField(20);
-		cpfText.setBounds(100, 40, 180, 25);
-		panel.add(cpfText);
 		
-		JLabel endLabel = new JLabel("Endereço");
-		endLabel.setBounds(10, 70, 160, 25);
-		panel.add(endLabel);
-
-		JTextField endText = new JTextField(20);
-		endText.setBounds(100, 70, 180, 25);
-		panel.add(endText);
-
-		JLabel telLabel = new JLabel("Telefone");
-		telLabel.setBounds(10, 100, 160, 25);
-		panel.add(telLabel);
+		public void ShowViewCliente(DadosController d){
 			
-		JTextField telText = new JTextField(20);
-		telText.setBounds(100, 100, 180, 25);
-		panel.add(telText);
+			dados = d;
 		
-		JButton cadastroButton = new JButton("Cadastrar");
-		cadastroButton.setBounds(180, 140, 100, 25);
-		panel.add(cadastroButton);
+		    title.setFont(new Font("Arial Black", Font.BOLD, 20));
+			listaNomeCliente = new ClienteController(dados).getAllClientes();
+			listaCliente = new JList<String>(listaNomeCliente);
+			listaCliente.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			scrollCliente = new JScrollPane(listaCliente);
+			scrollCliente.setPreferredSize(new Dimension(350, 120));
+			
+			frame.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
+			
+			frame.add(title);
+			frame.add(scrollCliente);
+			frame.add(cadastraNome);
+			frame.add(refresh);
+			
+			
+			
+			frame.setSize(400, 550);
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			frame.setVisible(true);
+			
+			cadastraNome.addActionListener(this);
+			refresh.addActionListener(this);
+			listaCliente.addListSelectionListener(this);
+			
+		}
+		public void actionPerformed(ActionEvent e) {
+			Object src = e.getSource();
+			
+			if(src == cadastraNome)
+				new ViewCrudCliente().crudCliente(5, dados, this, 0);
+			
+			
+			if(src == refresh)
+				listaCliente.setListData(new ClienteController(dados).getAllClientes());			
+				listaCliente.updateUI();
+			
+			
+		}
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+
+		if(e.getValueIsAdjusting() && src == listaCliente) {
+			new ViewCrudCliente().crudCliente(7, dados, this, 
+					listaCliente.getSelectedIndex());
+		}
+
 	}
 }
 

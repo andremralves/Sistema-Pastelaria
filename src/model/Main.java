@@ -8,6 +8,7 @@ public class Main {
     static PastelController pas1;
     static BebidaController beb1;
     static Pedido p1;
+    static Pastel p;
     static Dados d = new Dados();
     
     static Scanner input = new Scanner(System.in);
@@ -15,14 +16,14 @@ public class Main {
     public static void main(String[]args){
     	d.fillAllData();
     	
-    	d.getBebidas().remove(0);  
-    	d.getBebidas().remove(0);
-    	
     	for(int i = 0; i < d.getPasteis().size(); i++) {
     		System.out.println(d.getPasteis().get(i));
     	}
-    	for(int i = 0; i < d.getBebidas().size(); i++) {
-    		System.out.println(d.getBebidas().get(i));
+    	System.out.println();
+    	p = new Pastel(9, "Pastel-" + 9, 5.50, "ingredientes", false);
+    	
+    	for(int i = 0; i < d.getPasteis().size(); i++) {
+    		System.out.println(d.getPasteis().get(i));
     	}
         
     }
