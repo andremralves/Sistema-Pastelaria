@@ -61,7 +61,7 @@ public class Dados {
 		this.pasteis.set(pos, p);
 	}
 	
-	public void delestePastel(int pos) {
+	public void deletePastel(int pos) {
 		this.pasteis.remove(pos);
 	}
 	
@@ -74,7 +74,7 @@ public class Dados {
 		this.bebidas.set(pos, b);
 	}
 	
-	public void delesteBebida(int pos) {
+	public void deleteBebida(int pos) {
 		this.bebidas.remove(pos);
 	}
 	
@@ -87,7 +87,7 @@ public class Dados {
 		this.clientes.set(pos, c);
 	}
 	
-	public void delesteCliente(int pos) {
+	public void deleteCliente(int pos) {
 		this.clientes.remove(pos);
 	}
 	

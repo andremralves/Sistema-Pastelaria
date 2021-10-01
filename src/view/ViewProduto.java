@@ -56,7 +56,7 @@ public class ViewProduto implements ActionListener, ListSelectionListener{
 			frame.add(refresh2);
 			
 			
-			frame.setSize(400, 550);
+			frame.setSize(400, 300);
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			

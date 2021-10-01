@@ -30,6 +30,10 @@ public class DadosController {
 		return d.getClientes();
 	}
 	
+	public ArrayList<Pedido> getPedidos() {
+		return d.getPedidos();
+	}
+	
 	//Metodos CRUD
 	public boolean editAddPastel(String[] pastelInfo) {
 		if(pastelInfo == null)
@@ -76,17 +80,17 @@ public class DadosController {
 	}
 	
 	public boolean deletePastel(int pos) {
-		d.delestePastel(pos);
+		d.deletePastel(pos);
 		return true;
 	}
 	
 	public boolean deleteBebida(int pos) {
-		d.delesteBebida(pos);
+		d.deleteBebida(pos);
 		return true;
 	}
 	
 	public boolean deleteCliente(int pos) {
-		d.delesteCliente(pos);
+		d.deleteCliente(pos);
 		return true;
 	}
 	

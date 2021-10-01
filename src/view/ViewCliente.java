@@ -28,7 +28,7 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			listaCliente = new JList<String>(listaNomeCliente);
 			listaCliente.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			scrollCliente = new JScrollPane(listaCliente);
-			scrollCliente.setPreferredSize(new Dimension(350, 120));
+			scrollCliente.setPreferredSize(new Dimension(350, 200));
 			
 			frame.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
 			
@@ -39,7 +39,7 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			
 			
 			
-			frame.setSize(400, 550);
+			frame.setSize(400, 400);
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			
