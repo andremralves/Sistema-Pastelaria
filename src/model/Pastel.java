@@ -27,11 +27,9 @@ public class Pastel extends Produto {
     }
     
     public String toString() {
-        return "Numero no cardapio: " + numeroCardapio +
+        return "Num. Cardápio: " + numeroCardapio +
         		", Nome do pastel: " + nome +
-        		", valor: R$" + preco +
-        		", Ingredientes: " + ingredientes +
-        		", Borda: " + borda;
+        		", valor: R$" + preco;
     }
 
 }

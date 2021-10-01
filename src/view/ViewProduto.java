@@ -4,115 +4,108 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.plaf.DimensionUIResource;
+
 import controller.*;
 import java.util.ArrayList;
 
 public class ViewProduto implements ActionListener, ListSelectionListener{
 		
 		private static JFrame frame = new JFrame("Janela de Produtos");
-		private static JLabel title1 = new JLabel("Pastel");
-		private static JLabel title2 = new JLabel("Bebida");
-		private static JButton cadastra1 = new JButton("Cadastrar");
-		private static JButton cadastra2 = new JButton("Cadastrar");
+		private static JPanel panel = new JPanel();
+		private static JLabel title1 = new JLabel("Pasteis:");
+		private static JLabel title2 = new JLabel("Bebidas:");
+		private static JButton cadastraPastel = new JButton("Cadastrar");
+		private static JButton cadastraBebida = new JButton("Cadastrar");
 		private static JButton deleta1 = new JButton("Deletar");
 		private static JButton deleta2 = new JButton("Deletar");
 		private static JButton refresh1 = new JButton("Refresh");
 		private static JButton refresh2 = new JButton("Refresh");
 		private JList<String> listaPastel;
 		private JList<String> listaBebida;
+		private JScrollPane scrollPastel;
+		private JScrollPane scrollBebida;
 		private String[] listaNomePastel = new String[100];
 		private String[] listaNomeBebida = new String[100];
 		private static DadosController dados;
 		
 		
-		public ViewProduto(DadosController d){
+		public void ShowViewProduto(DadosController d){
+			
+			dados = d;
 		
-		dados = d;
-		
-	    title1.setFont(new Font("Arial Black", Font.BOLD, 12));
-		title1.setBounds(50, 10, 300, 30);
-		title2.setFont(new Font("Arial Black", Font.BOLD, 12));
-		title2.setBounds(50, 220, 300, 30);
-		cadastra1.setBounds(50, 180, 100, 30);
-		cadastra2.setBounds(50, 350, 100, 30);
-		deleta1.setBounds(160, 180, 100, 30);
-		deleta2.setBounds(160, 350, 100, 30);
-		refresh1.setBounds(270, 180, 100, 30);
-		refresh2.setBounds(270, 350, 100, 30);
-		
-		listaPastel.setBounds(50, 50, 350, 120);
-		listaPastel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listaPastel.setVisibleRowCount(10);
-		listaNomePastel = new DadosController(dados).getNome();
-		listaPastel = new JList<String>(listaNomePastel);
-		
-		
-		listaBebida.setBounds(50, 50, 350, 120);
-		listaBebida.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		listaBebida.setVisibleRowCount(10);
-		listaNomeBebida = new DadosController(dados).getNome();
-		listaBebida = new JList<String>(listaNomeBebida);
-		
-		frame.setLayout(null);
-		
-		frame.add(title1);
-		frame.add(title2);
-		frame.add(cadastra1);
-		frame.add(cadastra2);
-		frame.add(deleta1);
-		frame.add(deleta2);
-		frame.add(refresh1);
-		frame.add(refresh2);
-		frame.add(listaPastel);
-		frame.add(listaBebida);
-		
-		
-		frame.setSize(500, 450);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-		
-		cadastra1.addActionListener(this);
-		cadastra2.addActionListener(this);
-		deleta1.addActionListener(this);
-		deleta2.addActionListener(this);
-		refresh1.addActionListener(this);
-		refresh2.addActionListener(this);
+		    title1.setFont(new Font("Arial Black", Font.BOLD, 18));
+			title2.setFont(new Font("Arial Black", Font.BOLD, 18));
+			
+			listaNomePastel = new PastelController(dados).getAllPasteis();
+			listaPastel = new JList<String>(listaNomePastel);
+			listaPastel.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			scrollPastel = new JScrollPane(listaPastel);
+			scrollPastel.setPreferredSize(new Dimension(350, 120));
+			
+			listaNomeBebida = new BebidaController(dados).getAllBebidas();
+			listaBebida = new JList<String>(listaNomeBebida);
+			listaBebida.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+			scrollBebida = new JScrollPane(listaBebida);
+			scrollBebida.setPreferredSize(new Dimension(350, 120));
+			
+			panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+			
+			panel.add(title1);
+			panel.add(scrollPastel);
+			panel.add(cadastraPastel);
+			frame.add(deleta1);
+			frame.add(refresh1);
+			frame.add(title2);
+			frame.add(scrollBebida);
+			frame.add(cadastraBebida);
+			frame.add(deleta2);
+			frame.add(refresh2);
+			
+			
+			frame.setSize(400, 400);
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			frame.setVisible(true);
+			
+			cadastraPastel.addActionListener(this);
+			cadastraBebida.addActionListener(this);
+			deleta1.addActionListener(this);
+			deleta2.addActionListener(this);
+			refresh1.addActionListener(this);
+			refresh2.addActionListener(this);
 		}
 			
-		public static void main(String[] args) {
-				
-			ViewProduto produto = new ViewProduto();
-				
-			cadastra1.addActionListener(produto);
-			cadastra2.addActionListener(produto);
-			deleta1.addActionListener(produto);
-			deleta2.addActionListener(produto);
-			refresh1.addActionListener(produto);
-			refresh2.addActionListener(produto);
-		}
-		
-		
 	
-		public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		if(src == cadastra1)
-			new ViewCadastro();
+		if(src == cadastraPastel)
+			//new ViewCadastro().cadastraGeral(1, dados, this, 0);
 		
-		if(src == cadastra2)
-			new ViewCadastro().cadrasta(2);
+		if(src == cadastraBebida)
+			//new ViewCadastro().cadastraGeral(2, dados, this, 0);
 		
-		if(src == deleta1)
-			new ViewDeleta().DadosController((dados, 3);
-			
-		if(src == deleta2)
-			new ViewDeleta().DadosController((dados, 1);
 		
 		if(src == refresh1)
-			new ViewPedido().DadosController((dados, 2);
+			//listaPastel.setListData(new PastelController(dados).getPastel());			
+			//listaPastel.updateUI();
 		
 		if(src == refresh2)
-			new ViewProduto().controlador3(dados, 3);
+			//listaBebida.setListData(new BebidaController(dados).getBebida());			
+			listaBebida.updateUI();
 		
+	}
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+
+		if(e.getValueIsAdjusting() && src == listaPastel) {
+			//new ViewCadastro().cadastraGeral(3, dados, this, 
+					//listaPastel.getSelectedIndex());
+		}
+
+		if(e.getValueIsAdjusting() && src == listaBebida) {
+			//new ViewCadastro().cadastraGeral(4, dados, this, 
+					//listaBebida.getSelectedIndex());
+		}
 	}
 }

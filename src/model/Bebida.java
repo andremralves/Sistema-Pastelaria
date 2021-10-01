@@ -16,8 +16,9 @@ public class Bebida extends Produto{
         this.alcoolics = alcoolics;
     }
     
-    @Override
     public String toString() {
-        return "Nome da bebida: " + nome + ", valor: R$ " + preco + ", Alcoolica: " + alcoolics;
+        return "Num. Cardápio" + numeroCardapio + 
+        		"Nome da bebida: " + nome + 
+        		", valor: R$ " + preco;
     }
 }

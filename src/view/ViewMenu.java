@@ -28,7 +28,7 @@ public class ViewMenu implements ActionListener {
 		frame.add(pedidos);
 		frame.add(produtos);
 		
-		frame.setSize(400, 100);
+		frame.setSize(450, 150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		}
@@ -46,13 +46,13 @@ public class ViewMenu implements ActionListener {
 		Object src = e.getSource();
 		
 		if(src == cliente)
-			new ViewCliente(dados);
+			new ViewCliente();
 		
 		if(src == pedidos)
-			new ViewPedido(dados);
+			new ViewPedido();
 		
 		if(src == produtos)
-			new ViewProduto(dados);
+			new ViewProduto().ShowViewProduto(dados);
 		
 	}
 }

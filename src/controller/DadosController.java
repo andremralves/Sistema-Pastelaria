@@ -26,5 +26,4 @@ public class DadosController {
 		return d.getBebidas();
 	}
 	
-	
 }
