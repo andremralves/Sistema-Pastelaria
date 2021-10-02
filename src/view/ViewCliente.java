@@ -4,13 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.plaf.DimensionUIResource;
 import controller.*;
 
 public class ViewCliente implements ActionListener, ListSelectionListener {
 	
 		private static JFrame frame = new JFrame("Janela de Cliente");
-		private static JLabel title = new JLabel("Clientes:");
+		private static JLabel title = new JLabel("Clientes");
 		private static JButton cadastraNome = new JButton("Cadastrar");		
 		private static JButton refresh = new JButton("Refresh");
 		private JList<String> listaCliente;
@@ -39,7 +38,7 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			
 			
 			
-			frame.setSize(400, 400);
+			frame.setSize(400, 380);
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			

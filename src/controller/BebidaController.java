@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.Bebida;
+import model.Pastel;
 
 public class BebidaController {
 	
@@ -29,6 +30,15 @@ public class BebidaController {
 			names[i] = bebidas.get(i).getNome();
 		}
 		return names;
+	}
+	
+	public ArrayList<Bebida> getSelectedBebidas(int[] sel) {
+		ArrayList<Bebida> pSelecionados = new ArrayList<Bebida>();
+		int size = sel.length;
+		for(int i = 0; i < size; i++) {
+			pSelecionados.add(bebidas.get(sel[i]));
+		}
+		return pSelecionados;
 	}
 	
 	public Bebida getBebida(int i) {

@@ -35,6 +35,12 @@ public abstract class Produto {
     public void setPreco (double preco) {
         this.preco = preco;
     }
+    
+    public String toString() {
+        return "Num. Cardápio: " + numeroCardapio +
+        		", Nome: " + nome +
+        		", valor: R$" + preco;
+    }
 
 }
 

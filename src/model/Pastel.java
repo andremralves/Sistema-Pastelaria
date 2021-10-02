@@ -26,10 +26,13 @@ public class Pastel extends Produto {
         this.borda = b;
     }
     
+    @Override
     public String toString() {
         return "Num. Cardápio: " + numeroCardapio +
         		", Nome: " + nome +
-        		", valor: R$" + preco;
+        		", valor: R$" + preco +
+        		", Ingredientes: " + ingredientes +
+        		", Borda: " + ((borda == true) ? "sim" : "não");
     }
 
 }

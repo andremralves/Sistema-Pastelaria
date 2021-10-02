@@ -197,13 +197,13 @@ public class ViewCrudProduto implements ActionListener {
 			if(src == botaoDeletar) {
 				boolean res = false;
 	
-				if (opcao == 3) {//exclui aluno
+				if (opcao == 3) {//exclui Pastel
 					res = dados.deletePastel(posicao);
 					if (res) mensagemSucessoExclusao(); 
 					else mensagemErroExclusaoPastel(); 
 				}
 					
-				if (opcao == 4){ //exclui professor
+				if (opcao == 4){ //exclui Bebida
 					res = dados.deleteBebida(posicao);
 					if (res) mensagemSucessoExclusao(); 
 					else mensagemErroExclusaoBebida(); 

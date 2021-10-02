@@ -147,7 +147,7 @@ public class ViewCrudCliente implements ActionListener{
 			if(src == botaoDeletar) {
 				boolean res = false;
 	
-				if (opcao == 7) {//exclui aluno
+				if (opcao == 7) {//exclui Cliente
 					res = dados.deleteCliente(posicao);
 					if (res) mensagemSucessoExclusao(); 
 					else mensagemErroExclusaoCliente(); 

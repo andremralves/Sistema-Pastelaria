@@ -10,8 +10,8 @@ import controller.*;
 public class ViewProduto implements ActionListener, ListSelectionListener{
 		
 		private static JFrame frame = new JFrame("Janela de Produtos");
-		private static JLabel title1 = new JLabel("Pasteis:");
-		private static JLabel title2 = new JLabel("Bebidas:");
+		private static JLabel title1 = new JLabel("Pasteis");
+		private static JLabel title2 = new JLabel("Bebidas");
 		private static JButton cadastraPastel = new JButton("Cadastrar");
 		private static JButton cadastraBebida = new JButton("Cadastrar");
 		private static JButton refresh1 = new JButton("Refresh");
@@ -56,7 +56,7 @@ public class ViewProduto implements ActionListener, ListSelectionListener{
 			frame.add(refresh2);
 			
 			
-			frame.setSize(400, 300);
+			frame.setSize(400, 550);
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			

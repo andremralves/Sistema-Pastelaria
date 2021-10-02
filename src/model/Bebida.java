@@ -16,9 +16,11 @@ public class Bebida extends Produto{
         this.alcoolics = alcoolics;
     }
     
+    @Override
     public String toString() {
         return "Num. Cardápio: " + numeroCardapio + 
         		", Nome: " + nome + 
-        		", valor: R$ " + preco;
+        		", valor: R$ " + preco +
+        		", Acoólica: " + ((alcoolics == true) ? "sim" : "não");
     }
 }

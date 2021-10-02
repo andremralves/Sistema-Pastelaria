@@ -4,13 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.plaf.DimensionUIResource;
 import controller.*;
 
 public class ViewPedido implements ActionListener, ListSelectionListener {
 	
 		private static JFrame frame = new JFrame("Janela de Pedidos");
-		private static JLabel title = new JLabel("Pedido:");
+		private static JLabel title = new JLabel("Pedido");
 		private static JButton cadastraPedido = new JButton("Cadastrar");		
 		private static JButton refresh = new JButton("Refresh");
 		private JList<String> listaPedido;
@@ -18,12 +17,12 @@ public class ViewPedido implements ActionListener, ListSelectionListener {
 		private String[] listaNomePedido = new String[100];
 		private static DadosController dados;
 		
-		public void ShowViewCliente(DadosController d){
+		public void ShowViewPedidos(DadosController d){
 			
 			dados = d;
 		
 		    title.setFont(new Font("Arial Black", Font.BOLD, 20));
-			listaNomePedido = new ClienteController(dados).getAllClientes();
+			listaNomePedido = new PedidoController(dados).getAllPedidos();
 			listaPedido = new JList<String>(listaNomePedido);
 			listaPedido.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 			scrollPedido = new JScrollPane(listaPedido);
@@ -38,7 +37,7 @@ public class ViewPedido implements ActionListener, ListSelectionListener {
 			
 			
 			
-			frame.setSize(400, 550);
+			frame.setSize(400, 350);
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			

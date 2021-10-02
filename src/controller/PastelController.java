@@ -30,6 +30,15 @@ public class PastelController {
 		return names;
 	}
 	
+	public ArrayList<Pastel> getSelectedPasteis(int[] sel) {
+		ArrayList<Pastel> pSelecionados = new ArrayList<Pastel>();
+		int size = sel.length;
+		for(int i = 0; i < size; i++) {
+			pSelecionados.add(pasteis.get(sel[i]));
+		}
+		return pSelecionados;
+	}
+	
 	//Informações Individuais
 	public Pastel getPastel(int i) {
 		return pasteis.get(i);

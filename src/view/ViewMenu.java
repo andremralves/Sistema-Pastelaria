@@ -49,7 +49,7 @@ public class ViewMenu implements ActionListener {
 			new ViewCliente().ShowViewCliente(dados);;
 		
 		if(src == pedidos)
-			new ViewPedido();
+			new ViewPedido().ShowViewPedidos(dados);
 		
 		if(src == produtos)
 			new ViewProduto().ShowViewProduto(dados);

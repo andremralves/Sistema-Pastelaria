@@ -1,7 +1,8 @@
 package controller;
 
-import model.*;
 import java.util.ArrayList;
+import model.*;
+
 
 public class DadosController {
 	private Dados d = new Dados();
@@ -79,6 +80,19 @@ public class DadosController {
 		}
 	}
 	
+	public boolean editAddPedido(int pedidoInfo, Cliente pedidoCliente, ArrayList<Pastel> pedidoPastel, ArrayList<Bebida> pedidoBebida) {
+		if(pedidoCliente == null)
+			return false;
+		else {
+			Pedido p = new Pedido(pedidoCliente, pedidoPastel, pedidoBebida);
+			if(pedidoInfo != getClientes().size())
+				d.editPedido(p, pedidoInfo);
+			else
+				d.AddPedido(p);
+			return true;
+		}
+	}
+	
 	public boolean deletePastel(int pos) {
 		d.deletePastel(pos);
 		return true;
@@ -91,6 +105,11 @@ public class DadosController {
 	
 	public boolean deleteCliente(int pos) {
 		d.deleteCliente(pos);
+		return true;
+	}
+	
+	public boolean deletePedido(int pos) {
+		d.deletePedido(pos);
 		return true;
 	}
 	

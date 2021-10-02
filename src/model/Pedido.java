@@ -1,15 +1,19 @@
 package model;
-public class Pedido {
-    private int numeroPedido;
-    private Cliente clienteSelecionado;
-    private Produto[] produtosSelecionados = new Produto[15];
-    private double valorTotal;
-    private int numProdutos = 0;
 
-    public Pedido(int numPed, Cliente c, Produto[] p, double valT) {
-        this.numeroPedido = numPed;
+import java.util.ArrayList;
+
+public class Pedido {
+    static private int numeroPedido = 0;
+    private Cliente clienteSelecionado;
+    private ArrayList<Pastel> pasteisSelecionados = new ArrayList<Pastel>();
+    private ArrayList<Bebida> bebidasSelecionadas = new ArrayList<Bebida>();
+    private double valorTotal;
+    private int numPasteis = 0;
+
+    public Pedido(Cliente c, ArrayList<Pastel> p, ArrayList<Bebida> b) {
+        this.numeroPedido++;
         this.clienteSelecionado = c;
-        this.valorTotal = valT;
+        this.valorTotal = calculaValorTotal(p, b);
     }
 
     public int getNumeroPedido() {
@@ -20,7 +24,7 @@ public class Pedido {
         this.numeroPedido = p;
     }
 
-    public Cliente getClientsSelecionado() {
+    public Cliente getClienteSelecionado() {
         return this.clienteSelecionado;
     }
 
@@ -28,12 +32,20 @@ public class Pedido {
         this.clienteSelecionado = p;
     }
 
-    public Produto[] getProdutosSelecionados() {
-        return this.produtosSelecionados;
+    public ArrayList<Pastel> getPasteissSelecionados() {
+        return this.pasteisSelecionados;
     }
 
-    public void setArrayProdutosSelecionados(Produto[] p) {
-        this.produtosSelecionados = p;
+    public void setArrayPasteissSelecionados(ArrayList<Pastel> p) {
+        this.pasteisSelecionados = p;
+    }
+    
+    public ArrayList<Bebida> getBebidassSelecionadss() {
+        return this.bebidasSelecionadas;
+    }
+
+    public void setArrayBebidasSelecionadss(ArrayList<Bebida> b) {
+        this.bebidasSelecionadas = b;
     }
 
     public double getValorTotal() {
@@ -44,8 +56,22 @@ public class Pedido {
         this.valorTotal = vt;
     }
 
-    public void calculaValorTotal(Produto[] p) {
-        //calcular valor total (em andamento)
+    public double calculaValorTotal(ArrayList<Pastel> p, ArrayList<Bebida> b) {
+        double total = 0;
+        for(int i = 0; i < p.size(); i++) {
+        	total = total + p.get(i).preco;
+        }
+        for(int i = 0; i < b.size(); i++) {
+        	total = total + b.get(i).preco;
+        }
+        return total;
+    }
+    
+    public String toString() {
+    	return "Num. Pedido: " + numeroPedido +
+        		", Cliente: " + clienteSelecionado.getnome() +
+        		", Prod. Selecionados: " + pasteisSelecionados +
+        		", Valor Total: R$" + valorTotal;
     }
 
 }

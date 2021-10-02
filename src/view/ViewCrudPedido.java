@@ -1,28 +1,35 @@
 package view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
 import controller.*;
 
 public class ViewCrudPedido implements ActionListener {
 		
 		private JFrame frame;
-		private JLabel labelNumPed = new JLabel("Número do Pedido ");
-		private JTextField inserirNumPed;
-		private JLabel labelNome = new JLabel("Nome ");
-		private JTextField inserirNome;
+		private JLabel labelClientes = new JLabel("Cliente ");
+		private JList<String> listaClientes;
+		private String[] listaNomeClientes = new String[100];
+		private JLabel labelProdutos = new JLabel("Produtos ");
+		private JList<String> listaPasteis;
+		private String[] listaNomePasteis = new String[100];
+		private JList<String> listaBebidas;
+		private String[] listaNomeBebidas = new String[100];
 		private JButton botaoDeletar = new JButton("Deletar");
 		private JButton botaoSalvar = new JButton("Salvar");
+		private JScrollPane scrollClientes;
+		private JScrollPane scrollPasteis;
+		private JScrollPane scrollBebidas;
 		private String janelaTitulo;
-		private String[] novoDado = new String[9];
+		private int[] novoDado = new int[5];
+		private int[] pasteisSelecionados = new int[15];
+		private int[] bebidasSelecionadas = new int[15];
 		private static DadosController dados;
 		private int posicao;
 		private int opcao;
+		private int numPedido = 0;
 		
 		public void crudPedido(int es, DadosController d, ViewPedido p, int pos){
 			
@@ -36,32 +43,70 @@ public class ViewCrudPedido implements ActionListener {
 			frame = new JFrame(janelaTitulo);
 			
 			if (es == 6){ //Cadastro de Pedido
-
-				inserirNome = new JTextField(200);
-				inserirNumPed = new JTextField(200);
 				
-				botaoSalvar.setBounds(245, 175, 115, 30);
+				labelClientes.setFont(new Font("Arial Black", Font.BOLD, 20));
+				listaNomeClientes = new ClienteController(dados).getAllClientes();
+				listaClientes = new JList<String>(listaNomeClientes);
+				listaClientes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				scrollClientes = new JScrollPane(listaClientes);
+				scrollClientes.setPreferredSize(new Dimension(350, 120));
+				
+				labelProdutos.setFont(new Font("Arial Black", Font.BOLD, 20));
+				
+				listaNomePasteis = new PastelController(dados).getAllPasteis();
+				listaPasteis = new JList<String>(listaNomePasteis);
+				listaPasteis.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				scrollPasteis = new JScrollPane(listaPasteis);
+				scrollPasteis.setPreferredSize(new Dimension(350, 120));
+				
+				listaNomeBebidas = new BebidaController(dados).getAllBebidas();
+				listaBebidas = new JList<String>(listaNomeBebidas);
+				listaBebidas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+				scrollBebidas = new JScrollPane(listaBebidas);
+				scrollBebidas.setPreferredSize(new Dimension(350, 120));
+				
+				
 			
 			}else if (es == 8) { //Vizualização de Pedido
-				inserirNome = new JTextField(dados.getCliente()[pos].getNome(), 200);
-				inserirNumPed = new JTextField(dados.getPedidos()[pos].getNumeroCardapio(),200);
 				
-				botaoSalvar.setBounds(245, 175, 115, 30);
-				botaoDeletar.setBounds(245, 175, 115, 30);			
+				labelProdutos.setFont(new Font("Arial Black", Font.BOLD, 20));
+				
+				listaNomePasteis = new PedidoController(dados).getAllPedidos();
+				listaPasteis = new JList<String>(listaNomePasteis);
+				listaPasteis.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+				scrollPasteis = new JScrollPane(listaPasteis);
+				scrollPasteis.setPreferredSize(new Dimension(350, 120));
+				
+				listaNomeBebidas = new BebidaController(dados).getAllBebidas();
+				listaBebidas = new JList<String>(listaNomeBebidas);
+				listaBebidas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+				scrollBebidas = new JScrollPane(listaBebidas);
+				scrollBebidas.setPreferredSize(new Dimension(350, 120));
+				
+				frame.add(botaoDeletar);
+				
 			}
 			
-			labelNumPed.setBounds(30, 50, 100, 25);
-			inserirNumPed.setBounds(130, 50, 200, 25);
-			labelNome.setBounds(30, 50, 100, 25);
-			inserirNome.setBounds(130, 50, 200, 25);
+			frame.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
+			frame.setSize(400, 600);
+			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+			frame.setVisible(true);
 			
-			this.frame.add(labelNumPed);
-			this.frame.add(inserirNumPed);
-			this.frame.add(labelNome);
-			this.frame.add(inserirNome);
+			
+			frame.add(labelClientes);
+			frame.add(labelProdutos);
+			frame.add(scrollClientes);
+			frame.add(scrollPasteis);
+			frame.add(scrollBebidas);
+			frame.add(botaoSalvar);
+			frame.add(botaoDeletar);
+			
 			
 			botaoSalvar.addActionListener(this);
 			botaoDeletar.addActionListener(this);
+			//listaPasteis.addListSelectionListener(this);
+			//listaClientes.addListSelectionListener(this);
+			//listaBebidas.addListSelectionListener(this);
 			
 		}
 		
@@ -72,27 +117,22 @@ public class ViewCrudPedido implements ActionListener {
 			if(src == botaoSalvar) {
 				try {
 					boolean res;
-					if(opcao == 1) //cadastro de Pastel
-						novoDado[0] = Integer.toString(dados.getPasteis().size());
-					else if (opcao == 2) // cadastro de bebida
-						novoDado[0] = Integer.toString(dados.getBebidas().size());
+					
+					if(opcao == 6) //cadastro de Pedido
+						novoDado[0] = dados.getPasteis().size();
 					else // edicao de dado existente
-						novoDado[0] = Integer.toString(posicao);
-	
-					novoDado[1] =  inserirNumCard.getText();
-					novoDado[2] =  inserirNome.getText();
-					novoDado[3] =  inserirPreco.getText();
-					novoDado[4] =  inserirIng.getText();
-					novoDado[5] =  Boolean.toString(borda.isSelected());
-	
-					if (opcao == 1 || opcao == 3) {
-						novoDado[4] =  inserirIng.getText();
-						novoDado[5] =  Boolean.toString(borda.isSelected());
-						res = dados.editAddPastel(novoDado);;
-					} else {
-						novoDado[2] =  inserir.getText();
-						res = dados.inserirEditarProf(novoDado);
-					}
+						novoDado[0] = posicao;
+					
+					novoDado[1] = listaClientes.getSelectedIndex();
+					pasteisSelecionados[0] = listaPasteis.getSelectedIndex();
+					bebidasSelecionadas[0] = listaBebidas.getSelectedIndex();
+					System.out.println(listaClientes.getSelectedIndex());
+					System.out.println(pasteisSelecionados[0]);
+					System.out.println(bebidasSelecionadas[0]);
+					res = dados.editAddPedido(novoDado[0], new ClienteController(dados).getCliente(novoDado[1]),
+							new PastelController(dados).getSelectedPasteis(pasteisSelecionados),
+							new BebidaController(dados).getSelectedBebidas(bebidasSelecionadas));
+					System.out.println(res);
 	
 					if(res) {
 						mensagemSucessoCadastro();
@@ -101,65 +141,50 @@ public class ViewCrudPedido implements ActionListener {
 	
 				} catch (NullPointerException exc1) {
 					mensagemErroCadastro();
-				} catch (NumberFormatException exc2) {
-					mensagemErroCadastro();
-				}
+				} 
 			}
 	
 			if(src == botaoDeletar) {
 				boolean res = false;
 	
-				if (opcao == 3) {//exclui aluno
-					res = dados.removerAluno(posicao);
+				if (opcao == 8) {//exclui Pedido
+					//res = dados.removerPedido(posicao);
 					if (res) mensagemSucessoExclusao(); 
-					else mensagemErroExclusaoAluno(); 
+					else mensagemErroExclusaoPedido(); 
 				}
-					
-				if (opcao == 4){ //exclui professor
-					res = dados.removerProfessor(posicao);
-					if (res) mensagemSucessoExclusao(); 
-					else mensagemErroExclusaoProf(); 
-				}
-					
 			}
+					
 	
 		}
 		
+		
 		public void mensagemSucessoExclusao() {
-			JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null, 
+			JOptionPane.showMessageDialog(null, "O Pedido foi excluido com sucesso! :)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
 	
 		public void mensagemSucessoCadastro() {
-			JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null, 
+			JOptionPane.showMessageDialog(null, "O Pedido foi salvo com sucesso! :)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
 	
 		public void mensagemErroCadastro() {
-			JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS DADOS!\n "
-					+ "Pode ter ocorrido um dos dois erros a seguir:  \n"
-					+ "1. Nem todos os campos foram preenchidos \n"
-					+ "2. CPF, identidade, DDD e telefone não contém apenas números", null, 
+			JOptionPane.showMessageDialog(null,"Erro ao salvar Pedido! :(\n "
+					+ "Pode ter acontecido o erro a seguir:  \n"
+					+ "Não houve seleção de cliente e/ou\n"
+					+ "produtos da pastelaria ", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
 	
-		public void mensagemErroExclusaoAluno() {
-			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-					+ "Verifique se o aluno está matriculado\n"
-					+ "em alguma disciplina. Se sim, cancele\n "
-					+ "a matricula e tente novamente.", null, 
-					JOptionPane.ERROR_MESSAGE);
+		public void mensagemErroExclusaoPedido() {
+			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o Pedido! :(\n " +
+			"tente novamente!!", null, 
+			JOptionPane.ERROR_MESSAGE);
 		}
 		
-		public void mensagemErroExclusaoProf() {
-			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o dado.\n "
-					+ "Verifique se o professor está responsável\n"
-					+ "por alguma disciplina. Se sim, substitua\n "
-					+ "o professor e tente novamente.", null, 
-					JOptionPane.ERROR_MESSAGE);
-		}
+
 }
  
 	

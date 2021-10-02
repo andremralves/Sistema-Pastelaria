@@ -2,6 +2,7 @@ package model;
 import java.util.ArrayList;
 
 public class Dados {
+	
 	private ArrayList<Pastel> pasteis = new ArrayList<Pastel>();
 	private ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
 	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
@@ -100,7 +101,7 @@ public class Dados {
 		this.pedidos.set(pos, p);
 	}
 	
-	public void delestePedido(int pos) {
+	public void deletePedido(int pos) {
 		this.pedidos.remove(pos);
 	}
 	
