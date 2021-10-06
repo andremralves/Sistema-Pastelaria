@@ -8,7 +8,7 @@ import controller.*;
 
 public class ViewMenu implements ActionListener {
 		private static JFrame frame = new JFrame("Menu Pastelaria");
-		private static JLabel title = new JLabel("Pastelaria da Rodoviária");
+		private static JLabel title = new JLabel("Pastelaria");
 		private static JButton cliente = new JButton("Cliente");
 		private static JButton pedidos = new JButton("Pedidos");
 		private static JButton produtos = new JButton("Produtos");
@@ -16,10 +16,11 @@ public class ViewMenu implements ActionListener {
 		
 		public ViewMenu(){
 	    title.setFont(new Font("Arial Black", Font.BOLD, 16));
-		title.setBounds(100, 10, 300, 30);
+		title.setBounds(60, 10, 100, 30);
+		
 		cliente.setBounds(50, 50, 100, 30);
-		pedidos.setBounds(160, 50, 100, 30);
-		produtos.setBounds(270, 50, 100, 30);
+		pedidos.setBounds(50, 100, 100, 30);
+		produtos.setBounds(50, 150, 100, 30);
 		
 		frame.setLayout(null);
 		
@@ -28,7 +29,7 @@ public class ViewMenu implements ActionListener {
 		frame.add(pedidos);
 		frame.add(produtos);
 		
-		frame.setSize(450, 150);
+		frame.setSize(200, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		}

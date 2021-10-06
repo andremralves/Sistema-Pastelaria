@@ -18,9 +18,9 @@ public class Bebida extends Produto{
     
     @Override
     public String toString() {
-        return "Num. Cardápio: " + numeroCardapio + 
+        return "Num. Cardapio: " + numeroCardapio + 
         		", Nome: " + nome + 
         		", valor: R$ " + preco +
-        		", Acoólica: " + ((alcoolics == true) ? "sim" : "não");
+        		", Acoolica: " + ((alcoolics == true) ? "sim" : "nao");
     }
 }

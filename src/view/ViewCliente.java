@@ -10,11 +10,11 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 	
 		private static JFrame frame = new JFrame("Janela de Cliente");
 		private static JLabel title = new JLabel("Clientes");
-		private static JButton cadastraNome = new JButton("Cadastrar");		
+		private static JButton cadastraCliente = new JButton("Cadastrar");		
 		private static JButton refresh = new JButton("Refresh");
-		private JList<String> listaCliente;
-		private JScrollPane scrollCliente;
-		private String[] listaNomeCliente = new String[100];
+		private static String[] listaNomeCliente = new String[100];
+		private static JList<String> listaCliente = new JList<String>(listaNomeCliente);
+		private static JScrollPane scrollCliente = new JScrollPane(listaCliente);
 		private static DadosController dados;
 		
 		
@@ -23,17 +23,19 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			dados = d;
 		
 		    title.setFont(new Font("Arial Black", Font.BOLD, 20));
+			cadastraCliente.setPreferredSize(new Dimension(150, 30));
+			refresh.setPreferredSize(new Dimension(150, 30));
+		    
 			listaNomeCliente = new ClienteController(dados).getAllClientes();
-			listaCliente = new JList<String>(listaNomeCliente);
+			listaCliente.setListData(listaNomeCliente);
 			listaCliente.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			scrollCliente = new JScrollPane(listaCliente);
 			scrollCliente.setPreferredSize(new Dimension(350, 200));
 			
-			frame.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
+			frame.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
 			
 			frame.add(title);
 			frame.add(scrollCliente);
-			frame.add(cadastraNome);
+			frame.add(cadastraCliente);
 			frame.add(refresh);
 			
 			
@@ -42,7 +44,7 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			
-			cadastraNome.addActionListener(this);
+			cadastraCliente.addActionListener(this);
 			refresh.addActionListener(this);
 			listaCliente.addListSelectionListener(this);
 			
@@ -50,7 +52,7 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			
-			if(src == cadastraNome)
+			if(src == cadastraCliente)
 				new ViewCrudCliente().crudCliente(5, dados, this, 0);
 			
 			

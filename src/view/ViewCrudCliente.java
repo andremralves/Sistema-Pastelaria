@@ -19,7 +19,7 @@ public class ViewCrudCliente implements ActionListener{
 		private JLabel labelTelefone = new JLabel("Telefone");
 		private JTextField inserirDDD;
 		private JTextField inserirTelefone;
-		private JLabel labelEnd = new JLabel("Endereço \n (estado, cidade, bairro, cep, num ap/casa, nessa ordem): ");
+		private JLabel labelEnd = new JLabel("Endereco \n (estado, cidade, bairro, cep, num ap/casa, nessa ordem): ");
 		private JTextField inserirEstado;
 		private JTextField inserirCidade;
 		private JTextField inserirBairro;
@@ -40,12 +40,12 @@ public class ViewCrudCliente implements ActionListener{
 			dados = d;
 			
 			if (es == 5) janelaTitulo = "Cadastro de Cliente";
-			if (es == 7) janelaTitulo = "Edição de Cliente";
+			if (es == 7) janelaTitulo = "Edicao de Cliente";
 			
 			frame = new JFrame(janelaTitulo);
 			
-			if (es == 7) {//Vizualização de Cliente
-				inserirNome = new JTextField(dados.getClientes().get(pos).getnome(), 200);
+			if (es == 7) {//Vizualizaï¿½ï¿½o de Cliente
+				inserirNome = new JTextField(dados.getClientes().get(pos).getNome(), 200);
 				inserirCPF = new JTextField(dados.getClientes().get(pos).getCPF(),11);
 				inserirDDD = new JTextField(String.valueOf(dados.getClientes().get(pos).getNumTel().getDDD()), 3);
 				inserirTelefone = new JTextField(String.valueOf(dados.getClientes().get(pos).getNumTel().getNumero()), 10);
@@ -177,7 +177,7 @@ public class ViewCrudCliente implements ActionListener{
 	
 		public void mensagemErroExclusaoCliente() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o Cliente.\n "
-					+ "Verifique se o Cliente está cadastrado\n"
+					+ "Verifique se o Cliente estï¿½ cadastrado\n"
 					+ "em nossa loja. Se sim, exclua\n "
 					+ "Cadastro e tente novamente.", null, 
 					JOptionPane.ERROR_MESSAGE);

@@ -12,9 +12,9 @@ public class ViewPedido implements ActionListener, ListSelectionListener {
 		private static JLabel title = new JLabel("Pedido");
 		private static JButton cadastraPedido = new JButton("Cadastrar");		
 		private static JButton refresh = new JButton("Refresh");
-		private JList<String> listaPedido;
-		private JScrollPane scrollPedido;
-		private String[] listaNomePedido = new String[100];
+		private static String[] listaNomePedido = new String[100];
+		private static JList<String> listaPedido = new JList<String>(listaNomePedido);
+		private static JScrollPane scrollPedido = new JScrollPane(listaPedido);
 		private static DadosController dados;
 		
 		public void ShowViewPedidos(DadosController d){
@@ -22,13 +22,14 @@ public class ViewPedido implements ActionListener, ListSelectionListener {
 			dados = d;
 		
 		    title.setFont(new Font("Arial Black", Font.BOLD, 20));
-			listaNomePedido = new PedidoController(dados).getAllPedidos();
-			listaPedido = new JList<String>(listaNomePedido);
+		    cadastraPedido.setPreferredSize(new Dimension(150, 30));
+			refresh.setPreferredSize(new Dimension(150, 30));
+			
+			listaPedido.setListData(new PedidoController(dados).getAllPedidos());
 			listaPedido.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-			scrollPedido = new JScrollPane(listaPedido);
 			scrollPedido.setPreferredSize(new Dimension(350, 120));
 			
-			frame.setLayout(new FlowLayout(FlowLayout.CENTER,50,20));
+			frame.setLayout(new FlowLayout(FlowLayout.CENTER,20,20));
 			
 			frame.add(title);
 			frame.add(scrollPedido);

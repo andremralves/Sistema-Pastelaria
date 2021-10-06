@@ -28,11 +28,11 @@ public class Pastel extends Produto {
     
     @Override
     public String toString() {
-        return "Num. Cardápio: " + numeroCardapio +
+        return "Num. Cardapio: " + numeroCardapio +
         		", Nome: " + nome +
-        		", valor: R$" + preco +
+        		", Valor: R$" + preco +
         		", Ingredientes: " + ingredientes +
-        		", Borda: " + ((borda == true) ? "sim" : "não");
+        		", Borda: " + ((borda == true) ? "sim" : "nao");
     }
 
 }

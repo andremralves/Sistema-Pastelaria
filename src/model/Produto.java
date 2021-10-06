@@ -37,7 +37,7 @@ public abstract class Produto {
     }
     
     public String toString() {
-        return "Num. Cardápio: " + numeroCardapio +
+        return "Num. Cardapio: " + numeroCardapio +
         		", Nome: " + nome +
         		", valor: R$" + preco;
     }

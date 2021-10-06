@@ -23,7 +23,7 @@ public class ViewCrudProduto implements ActionListener {
 		private JTextField inserirIng;
 		private JLabel labelBorda = new JLabel("Deseja adcionar borda?");
 		private JCheckBox borda = new JCheckBox("Adicionar");
-		private JLabel labelAlc = new JLabel("A bebida é alcoólica?");
+		private JLabel labelAlc = new JLabel("A bebida eh alcoolica?");
 		private JCheckBox alcool = new JCheckBox("Sim");
 		private JButton botaoDeletar = new JButton("Deletar");
 		private JButton botaoSalvar = new JButton("Salvar");
@@ -53,6 +53,9 @@ public class ViewCrudProduto implements ActionListener {
 				inserirPreco = new JTextField(String.valueOf(
 						dados.getPasteis().get(pos).getPreco()),200);
 				inserirIng =  new JTextField(dados.getPasteis().get(pos).getIngredientes(), 200);
+				if(dados.getPasteis().get(pos).getBorda() == true)
+					borda.setSelected(true);
+					
 				
 				
 							
@@ -63,7 +66,8 @@ public class ViewCrudProduto implements ActionListener {
 					dados.getBebidas().get(pos).getNumeroCardapio()),200);
 				inserirPreco = new JTextField(String.valueOf(
 						dados.getBebidas().get(pos).getPreco()),200);
-						
+				if(dados.getBebidas().get(pos).getAlcoolics() == true)
+					alcool.setSelected(true);
 			
 							
 	
@@ -235,7 +239,7 @@ public class ViewCrudProduto implements ActionListener {
 
 		public void mensagemErroExclusaoPastel() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o Pastel!! :(\n "
-					+ "Veja se o pastel está cadastrado\n"
+					+ "Veja se o pastel estï¿½ cadastrado\n"
 					+ "na loja. Caso esteja, exclua\n "
 					+ "o pastel e tente novamente.", null, 
 					JOptionPane.ERROR_MESSAGE);
@@ -243,7 +247,7 @@ public class ViewCrudProduto implements ActionListener {
 		
 		public void mensagemErroExclusaoBebida() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir a bebida!! :(\n "
-					+ "Verifique se a bebida está cadastrada\n"
+					+ "Verifique se a bebida estï¿½ cadastrada\n"
 					+ "na loja. Caso esteja , exclua\n "
 					+ "a ba eebida e tente novamente.", null, 
 					JOptionPane.ERROR_MESSAGE);

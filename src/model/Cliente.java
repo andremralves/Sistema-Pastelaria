@@ -12,8 +12,12 @@ public class Cliente {
         this.end = e;
     }
 
-    public String getnome(){
+    public String getNome(){
         return nome;
+    }
+    
+    public void setNome(String nome){
+        this.nome = nome;
     }
 
     public String getCPF(){
@@ -41,6 +45,6 @@ public class Cliente {
     }
 
     public String toString() {
-        return "Nome: " +nome+ ", CPF: " +CPF+ ", Telefone: " +numTel+ ", Endereço: " +end;
+        return "Nome: " +nome+ ", CPF: " +CPF+ ", Telefone: " +numTel+ ", Endereco: " +end;
     }
 }

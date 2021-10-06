@@ -15,18 +15,34 @@ public class ClienteController {
 	
 	//Arrays
 	public String[] getAllClientes() {
-		String[] Clientes = new String[size];
+		String[] clientes = new String[size];
 		for(int i = 0; i < size; i++) {
-			Clientes[i] = this.clientes.get(i).toString();
+			clientes[i] = this.clientes.get(i).toString();
 		}
-		return Clientes;
+		return clientes;
+	}
+	
+	public ArrayList<Cliente> getClientes() {
+		return clientes;
+	}
+	
+	public void setClientes(ArrayList<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
 	public Cliente getCliente(int i) {
 		return clientes.get(i);
 	}
 	
-	public void setCliente(Cliente pastel, int i) {
-		this.clientes.set(i, pastel);
+	public void setCliente(Cliente Cliente, int i) {
+		this.clientes.set(i, Cliente);
+	}
+	
+	public String getNomeCliente(int i) {
+		return clientes.get(i).getNome();
+	}
+	
+	public void setNomeCliente(String nomeCliente, int i) {
+		this.clientes.get(i).setNome(nomeCliente);
 	}
 }

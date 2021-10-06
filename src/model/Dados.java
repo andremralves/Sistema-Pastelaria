@@ -12,13 +12,24 @@ public class Dados {
 	
 	public void fillAllData() {
 		int numeroCardapio = 1;
-		for(int i = 0; i < 8; i++) {
+		for(int i = 0; i < 5; i++) {
 			pasteis.add(new Pastel(numeroCardapio++, "Pastel-" + (i+1), 5.50, "ingredientes", (i+1)%2 == 0 ? true : false));
 			bebidas.add(new Bebida(numeroCardapio + 8, "Bebida-" + (i+1), 2.50, (i+1)%2 == 0 ? true : false));
 			telefones.add(new Telefone("061", "0000000" + (i+1)));
 			enderecos.add(new Endereco("DF", "Brasilia", "bairro-" + (i+1), "00000-00" + (i+1), (i+1)));				
 			clientes.add(new Cliente("Cliente-" + (i+1), "1231231230" + (i+1), telefones.get((i)), enderecos.get((i))));
+			
 		}
+		//Preencher Pedidos
+		ArrayList<Pastel> pedidoPasteis = new ArrayList<Pastel>();
+		ArrayList<Bebida> pedidoBebidas = new ArrayList<Bebida>();
+		for(int i = 0; i < 3; i++) {
+			pedidoPasteis.add(pasteis.get(i));
+			pedidoBebidas.add(bebidas.get(i));
+		}
+		for(int i = 0; i < 5; i++)
+			pedidos.add(new Pedido(clientes.get(i), pedidoPasteis, pedidoBebidas));
+		
 	}
 	
 	public ArrayList<Pastel> getPasteis() {

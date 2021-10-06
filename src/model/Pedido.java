@@ -3,16 +3,18 @@ package model;
 import java.util.ArrayList;
 
 public class Pedido {
-    static private int numeroPedido = 0;
+    private int numeroPedido;
     private Cliente clienteSelecionado;
     private ArrayList<Pastel> pasteisSelecionados = new ArrayList<Pastel>();
     private ArrayList<Bebida> bebidasSelecionadas = new ArrayList<Bebida>();
     private double valorTotal;
-    private int numPasteis = 0;
+    static private int count = 1;
 
     public Pedido(Cliente c, ArrayList<Pastel> p, ArrayList<Bebida> b) {
-        this.numeroPedido++;
+        numeroPedido = count++;
         this.clienteSelecionado = c;
+        this.pasteisSelecionados = p;
+        this.bebidasSelecionadas = b;
         this.valorTotal = calculaValorTotal(p, b);
     }
 
@@ -67,10 +69,28 @@ public class Pedido {
         return total;
     }
     
+    public ArrayList<String> getPasteisNames() {
+    	int size = pasteisSelecionados.size();
+    	ArrayList<String> pasteisNames = new ArrayList<String>();
+    	for(int i = 0; i < size; i++) {
+    		pasteisNames.add(pasteisSelecionados.get(i).getNome());
+    	}
+    	return pasteisNames;
+    }
+    
+    public ArrayList<String> getBebidasNames() {
+    	int size = bebidasSelecionadas.size();
+    	ArrayList<String> bebidasNames = new ArrayList<String>();
+    	for(int i = 0; i < size; i++) {
+    		bebidasNames.add(bebidasSelecionadas.get(i).getNome());
+    	}
+    	return bebidasNames;
+    }
+    
     public String toString() {
     	return "Num. Pedido: " + numeroPedido +
-        		", Cliente: " + clienteSelecionado.getnome() +
-        		", Prod. Selecionados: " + pasteisSelecionados +
+        		", Cliente: " + clienteSelecionado.getNome() +
+        		", Prod. Selecionados: " + getPasteisNames() + " " + getBebidasNames() +
         		", Valor Total: R$" + valorTotal;
     }
 

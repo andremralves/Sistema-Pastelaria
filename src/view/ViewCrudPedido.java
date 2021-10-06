@@ -2,6 +2,9 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import controller.*;
@@ -9,19 +12,23 @@ import controller.*;
 public class ViewCrudPedido implements ActionListener {
 		
 		private JFrame frame;
+		
 		private JLabel labelClientes = new JLabel("Cliente ");
-		private JList<String> listaClientes;
+		private List<JCheckBox> clientes = new ArrayList<JCheckBox>();
 		private String[] listaNomeClientes = new String[100];
-		private JLabel labelProdutos = new JLabel("Produtos ");
-		private JList<String> listaPasteis;
+		private JList<String> listaClientes = new JList<String>(listaNomeClientes);
+		
 		private String[] listaNomePasteis = new String[100];
-		private JList<String> listaBebidas;
+		private JLabel labelProdutos = new JLabel("Produtos ");
+		private JList<String> listaPasteis = new JList<String>(listaNomePasteis);
+		
 		private String[] listaNomeBebidas = new String[100];
+		private JList<String> listaBebidas = new JList<String>(listaNomeBebidas);
 		private JButton botaoDeletar = new JButton("Deletar");
 		private JButton botaoSalvar = new JButton("Salvar");
-		private JScrollPane scrollClientes;
-		private JScrollPane scrollPasteis;
-		private JScrollPane scrollBebidas;
+		private JScrollPane scrollClientes = new JScrollPane(listaClientes);
+		private JScrollPane scrollPasteis = new JScrollPane(listaPasteis);
+		private JScrollPane scrollBebidas = new JScrollPane(listaBebidas);
 		private String janelaTitulo;
 		private int[] novoDado = new int[5];
 		private int[] pasteisSelecionados = new int[15];
@@ -33,57 +40,49 @@ public class ViewCrudPedido implements ActionListener {
 		
 		public void crudPedido(int es, DadosController d, ViewPedido p, int pos){
 			
+			int numOfClientes = new ClienteController(dados).getClientes().size();
 			posicao = pos;
 			opcao = es;
 			dados = d;
 			
 			if (es == 6) janelaTitulo = "Cadastro de Pedido";
-			if (es == 8) janelaTitulo = "Edição de Pedido";
+			if (es == 8) janelaTitulo = "Edicao de Pedido";
 			
 			frame = new JFrame(janelaTitulo);
 			
 			if (es == 6){ //Cadastro de Pedido
 				
 				labelClientes.setFont(new Font("Arial Black", Font.BOLD, 20));
-				listaNomeClientes = new ClienteController(dados).getAllClientes();
-				listaClientes = new JList<String>(listaNomeClientes);
+				for(int i = 0; i < numOfClientes; i++) {
+					clientes.add(new JCheckBox(new ClienteController(dados).getNomeCliente(i)));
+				}
+				listaClientes.setListData(new ClienteController(dados).getAllClientes());
 				listaClientes.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-				scrollClientes = new JScrollPane(listaClientes);
 				scrollClientes.setPreferredSize(new Dimension(350, 120));
 				
 				labelProdutos.setFont(new Font("Arial Black", Font.BOLD, 20));
 				
-				listaNomePasteis = new PastelController(dados).getAllPasteis();
-				listaPasteis = new JList<String>(listaNomePasteis);
-				listaPasteis.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-				scrollPasteis = new JScrollPane(listaPasteis);
+				listaPasteis.setListData(new PastelController(dados).getAllPasteis());
+				listaPasteis.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 				scrollPasteis.setPreferredSize(new Dimension(350, 120));
 				
-				listaNomeBebidas = new BebidaController(dados).getAllBebidas();
-				listaBebidas = new JList<String>(listaNomeBebidas);
-				listaBebidas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-				scrollBebidas = new JScrollPane(listaBebidas);
+				listaBebidas.setListData(new BebidaController(dados).getAllBebidas());
+				listaBebidas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 				scrollBebidas.setPreferredSize(new Dimension(350, 120));
 				
 				
 			
-			}else if (es == 8) { //Vizualização de Pedido
+			}else if (es == 8) { //Vizualizacao de Pedido
 				
 				labelProdutos.setFont(new Font("Arial Black", Font.BOLD, 20));
 				
-				listaNomePasteis = new PedidoController(dados).getAllPedidos();
-				listaPasteis = new JList<String>(listaNomePasteis);
-				listaPasteis.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-				scrollPasteis = new JScrollPane(listaPasteis);
+				listaPasteis.setListData(new PastelController(dados).getAllPasteis());
+				listaPasteis.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 				scrollPasteis.setPreferredSize(new Dimension(350, 120));
 				
-				listaNomeBebidas = new BebidaController(dados).getAllBebidas();
-				listaBebidas = new JList<String>(listaNomeBebidas);
-				listaBebidas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-				scrollBebidas = new JScrollPane(listaBebidas);
+				listaBebidas.setListData(new BebidaController(dados).getAllBebidas());
+				listaBebidas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 				scrollBebidas.setPreferredSize(new Dimension(350, 120));
-				
-				frame.add(botaoDeletar);
 				
 			}
 			
@@ -92,21 +91,19 @@ public class ViewCrudPedido implements ActionListener {
 			frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			frame.setVisible(true);
 			
-			
+			frame.add(clientes.get(0));
 			frame.add(labelClientes);
 			frame.add(labelProdutos);
 			frame.add(scrollClientes);
 			frame.add(scrollPasteis);
 			frame.add(scrollBebidas);
 			frame.add(botaoSalvar);
-			frame.add(botaoDeletar);
+			if(es == 8)
+				frame.add(botaoDeletar);
 			
 			
 			botaoSalvar.addActionListener(this);
 			botaoDeletar.addActionListener(this);
-			//listaPasteis.addListSelectionListener(this);
-			//listaClientes.addListSelectionListener(this);
-			//listaBebidas.addListSelectionListener(this);
 			
 		}
 		
@@ -124,11 +121,11 @@ public class ViewCrudPedido implements ActionListener {
 						novoDado[0] = posicao;
 					
 					novoDado[1] = listaClientes.getSelectedIndex();
-					pasteisSelecionados[0] = listaPasteis.getSelectedIndex();
-					bebidasSelecionadas[0] = listaBebidas.getSelectedIndex();
+					pasteisSelecionados = listaPasteis.getSelectedIndices();
+					bebidasSelecionadas = listaBebidas.getSelectedIndices();
 					System.out.println(listaClientes.getSelectedIndex());
-					System.out.println(pasteisSelecionados[0]);
-					System.out.println(bebidasSelecionadas[0]);
+					System.out.println(pasteisSelecionados);
+					System.out.println(bebidasSelecionadas);
 					res = dados.editAddPedido(novoDado[0], new ClienteController(dados).getCliente(novoDado[1]),
 							new PastelController(dados).getSelectedPasteis(pasteisSelecionados),
 							new BebidaController(dados).getSelectedBebidas(bebidasSelecionadas));
@@ -173,7 +170,7 @@ public class ViewCrudPedido implements ActionListener {
 		public void mensagemErroCadastro() {
 			JOptionPane.showMessageDialog(null,"Erro ao salvar Pedido! :(\n "
 					+ "Pode ter acontecido o erro a seguir:  \n"
-					+ "Não houve seleção de cliente e/ou\n"
+					+ "Nï¿½o houve seleï¿½ï¿½o de cliente e/ou\n"
 					+ "produtos da pastelaria ", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
