@@ -5,11 +5,20 @@ import java.util.ArrayList;
 import model.Bebida;
 import model.Pastel;
 
+/**
+ * Essa classe possibilitará o controle de dados da Bebida.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class BebidaController {
 	
 	private ArrayList<Bebida> bebidas = new ArrayList<Bebida>();
 	private int size;
-	
+	/**
+	 * Esse método armazena os dados das Bebidas no DadosController.
+	 * @param d Objeto que chama o controlador DadosController.
+	 */
 	public BebidaController(DadosController d) {
 		this.bebidas = d.getBebidas();
 		this.size = bebidas.size();
@@ -36,9 +45,22 @@ public class BebidaController {
 		ArrayList<Bebida> pSelecionados = new ArrayList<Bebida>();
 		int size = sel.length;
 		for(int i = 0; i < size; i++) {
-			pSelecionados.add(bebidas.get(sel[i]));
+			if(sel[i] != -1)
+				pSelecionados.add(bebidas.get(sel[i]));
 		}
 		return pSelecionados;
+	}
+	
+	public ArrayList<Bebida> getBebidas() {
+		return bebidas;
+	}
+	
+	public void setBebidas(ArrayList<Bebida> bebidas) {
+		this.bebidas = bebidas;
+	}
+	
+	public int getSize() {
+		return 0;
 	}
 	
 	public Bebida getBebida(int i) {

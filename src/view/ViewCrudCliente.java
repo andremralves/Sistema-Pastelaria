@@ -9,6 +9,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import controller.*;
 
+/**
+ * Essa classe possibilitará a intereção do programa com o usuário no quesito CRUD do Cliente.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class ViewCrudCliente implements ActionListener{
 		
 		private JFrame frame;
@@ -32,6 +38,18 @@ public class ViewCrudCliente implements ActionListener{
 		private static DadosController dados;
 		private int posicao;
 		private int opcao;
+		
+		/**
+		 * Esse método é responsável pelo Cadastro, Edição e Exclusão do Cliente.
+		 * Possui casos de escolha, para cada caso, uma tela diferente, seja cadastro ou edição.
+		 * No campo de cadastro, estarão disponíveis aréas para cadastrar um novo cliente, 
+		 * ja para edição, os dados cadastrados ja virão escritos, porém será possível alterá-los
+		 * livremente.
+		 * @param es inteiro referente a escplha ( cadastro ou edição).
+		 * @param d Objeto vindo do controlador DadosController.
+		 * @param c Objeto que chama a ViewCliente
+		 * @param pos inteiro relacionado a posição do dado em sua ArrayList
+		 */
 		
 		public void crudCliente (int es, DadosController d, ViewCliente c, int pos) {
 			
@@ -110,7 +128,11 @@ public class ViewCrudCliente implements ActionListener{
 			botaoSalvar.addActionListener(this);
 			botaoDeletar.addActionListener(this); 
 		}
-		
+		/**
+		 * Método que captura a ação dos botões de cadastrar, quer seja para
+		 * editar, quer seja para cadastrar um novo usuário. Também pode capturar
+		 * a ação no botão deletar, excuindo o cliente selecionado.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			
 			Object src = e.getSource();
@@ -155,26 +177,34 @@ public class ViewCrudCliente implements ActionListener{
 			}
 	
 		}
-		
+		/**
+		 * Método que faz aparecer uma menssagem de sucesso ao excuir.
+		 */
 		public void mensagemSucessoExclusao() {
 			JOptionPane.showMessageDialog(null, "O Cliente foi excluido com sucesso! :)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
-	
+		/**
+		 * Método que faz aparecer uma menssagem de sucesso ao cadastrar.
+		 */
 		public void mensagemSucessoCadastro() {
 			JOptionPane.showMessageDialog(null, "O Cliente foi cadastrado com sucesso! :)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
-	
+		/**
+		 * Método que faz aparecer uma menssagem de erro ao cadastrar.
+		 */
 		public void mensagemErroCadastro() {
 			JOptionPane.showMessageDialog(null,"ERRO AO SALVAR O CLIENTE! :( \n "
 					+ "Pode ter ocorrido o erro a seguir:  \n"
 					+ "Nem todos os campos foram preenchidos \n", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
-	
+		/**
+		 * Método que faz aparecer uma menssagem de erro ao excuir.
+		 */
 		public void mensagemErroExclusaoCliente() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o Cliente.\n "
 					+ "Verifique se o Cliente estï¿½ cadastrado\n"

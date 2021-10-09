@@ -2,12 +2,19 @@ package controller;
 
 import model.Pastel;
 import java.util.ArrayList;
-
+/**
+ * Essa classe possibilitará o controle de dados do Pastel.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
 public class PastelController {
 	
 	private ArrayList<Pastel> pasteis = new ArrayList<Pastel>();
 	private int size;
-	
+	/**
+	 * Esse método armazena os dados dos Pastéis no DadosController.
+	 * @param d Objeto que chama o controlador DadosController.
+	 */
 	public PastelController(DadosController d) {
 		this.pasteis = d.getPasteis();
 		this.size = pasteis.size();
@@ -34,9 +41,18 @@ public class PastelController {
 		ArrayList<Pastel> pSelecionados = new ArrayList<Pastel>();
 		int size = sel.length;
 		for(int i = 0; i < size; i++) {
-			pSelecionados.add(pasteis.get(sel[i]));
+			if(sel[i] != -1)
+				pSelecionados.add(pasteis.get(sel[i]));
 		}
 		return pSelecionados;
+	}
+	
+	public ArrayList<Pastel> getPasteis() {
+		return pasteis;
+	}
+	
+	public void setPasteis(ArrayList<Pastel> pasteis) {
+		this.pasteis = pasteis;
 	}
 	
 	//Informações Individuais

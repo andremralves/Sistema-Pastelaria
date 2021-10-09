@@ -1,11 +1,23 @@
 package model;
+/**
+ * Essa classe captura os dados referentes ao Endereço a ser inserido e tem um relação de associação com Cliente.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
 public class Endereco {
     private String estado;
     private String cidade;
     private String bairro;
     private String CEP;
     private int numeroCasaAp;
-
+	/**
+     * Esse método captura os dados inseridos.
+     * @param e String que representa o estado.
+     * @param c String que representa a cidade.
+     * @param b String que representa o bairro.
+     * @param Cep String que representa o CEP.
+     * @param n inteiro que representa o número da residência.
+     */
     public Endereco(String e, String c, String b, String Cep, int n){
         this.estado = e;
         this.cidade = c;

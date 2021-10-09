@@ -7,6 +7,12 @@ import javax.swing.event.*;
 import javax.swing.plaf.DimensionUIResource;
 import controller.*;
 
+/**
+ * Essa classe possibilitará a intereção do programa com o usuário na View do Produto.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class ViewProduto implements ActionListener, ListSelectionListener{
 		
 		private static JFrame frame = new JFrame("Janela de Produtos");
@@ -23,7 +29,11 @@ public class ViewProduto implements ActionListener, ListSelectionListener{
 		private static JScrollPane scrollBebida = new JScrollPane(listaBebida);
 		private static DadosController dados;
 		
-		
+		/**
+		 * Este método será responsável pela interação do usuários com as informações
+		 * dos Produtos, beibida e pastel.
+		 * @param d Objeto que chama os dados do controlador DadosController.
+		 */
 		public void ShowViewProduto(DadosController d){
 			
 			dados = d;
@@ -67,7 +77,10 @@ public class ViewProduto implements ActionListener, ListSelectionListener{
 			listaBebida.addListSelectionListener(this);
 		}
 			
-	
+	/**
+	 * Método que capta as ações nos botões, para cadastrar bebida ou pastel, abrindo
+	 * uma página de CRUD do produto em questão, ou atualizar a página.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -87,6 +100,10 @@ public class ViewProduto implements ActionListener, ListSelectionListener{
 			listaBebida.updateUI();
 		
 	}
+	/**
+	 * Método que capta ações nas listas de Pastel ou Bebida, abrindo a pegina de edição
+	 * do produto em questão.
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 

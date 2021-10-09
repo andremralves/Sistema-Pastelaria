@@ -6,18 +6,29 @@ import javax.swing.*;
 import javax.swing.event.*;
 import controller.*;
 
+/**
+ * Essa classe possibilitará a intereção do programa com o usuário no quesito Cliente.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class ViewCliente implements ActionListener, ListSelectionListener {
 	
 		private static JFrame frame = new JFrame("Janela de Cliente");
 		private static JLabel title = new JLabel("Clientes");
 		private static JButton cadastraCliente = new JButton("Cadastrar");		
 		private static JButton refresh = new JButton("Refresh");
+		private static JTable clientesTable = new JTable();
 		private static String[] listaNomeCliente = new String[100];
 		private static JList<String> listaCliente = new JList<String>(listaNomeCliente);
 		private static JScrollPane scrollCliente = new JScrollPane(listaCliente);
 		private static DadosController dados;
 		
-		
+		/**
+		 * Esse método é responsável por configurar tudo que interagir com o usuário,
+		 * tela, botões, áreas de texto, etc.
+		 * @param d Objeto que recebe os dados do controlador DadosController.
+		 */
 		public void ShowViewCliente(DadosController d){
 			
 			dados = d;
@@ -49,6 +60,11 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			listaCliente.addListSelectionListener(this);
 			
 		}
+		/**
+		 * Esse método, importando uma swing, visa as ações de clique em botões, tendo um caso para cada clique, cada caso 
+		 * irá executar uma ação diferente. Para o cadastro, irá abrir uma outra tela, com o cadastro do cliente.
+		 * Para o refresh, irá atulizar as informações que se modificaram.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			Object src = e.getSource();
 			
@@ -62,11 +78,15 @@ public class ViewCliente implements ActionListener, ListSelectionListener {
 			
 			
 		}
+		/**
+		 * Esse método captura ações provienientes de cliques na Lista de clientes.~
+		 * O clique resultará na aba de edição de cliente.
+		 */
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 
 		if(e.getValueIsAdjusting() && src == listaCliente) {
-			new ViewCrudCliente().crudCliente(7, dados, this, 
+			new ViewCrudCliente().crudCliente(7, dados, this,
 					listaCliente.getSelectedIndex());
 		}
 

@@ -3,10 +3,21 @@ package controller;
 import java.util.ArrayList;
 import model.*;
 
+/**
+ * Essa classe possibilitará o controle de dados Gerais do programa.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ *//**
+ * Essa classe possibilitará o controle de dados Gerais do programa.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
 
 public class DadosController {
 	private Dados d = new Dados();
-	
+	/**
+	 * Esse método irá chamar o método fillAllData que irá cadastrar automaticamente os dados aleatórios.
+	 */
 	public DadosController() {
 		d.fillAllData();
 	}
@@ -36,8 +47,13 @@ public class DadosController {
 	}
 	
 	//Metodos CRUD
+	/**
+	 * Método que controla os dados da CRUD dos pastéis.
+	 * @param pastelInfo String com as informações do pastel, vindas da View.
+	 * @return retornará verdadeiro ou falso.
+	 */
 	public boolean editAddPastel(String[] pastelInfo) {
-		if(pastelInfo == null)
+		if(pastelInfo.length < 6)
 			return false;
 		else {
 			Pastel p = new Pastel(Integer.parseInt(pastelInfo[1]), pastelInfo[2], Double.parseDouble(pastelInfo[3]),
@@ -49,7 +65,11 @@ public class DadosController {
 			return true;
 		}
 	}
-	
+	/**
+	 * Método que controla os dados da CRUD dos pastéis.
+	 * @param bebidaInfo String com as informações da bebida, vindas da View.
+	 * @return retornará verdadeiro ou falso.
+	 */
 	public boolean editAddBebida(String[] bebidaInfo) {
 		if(bebidaInfo == null)
 			return false;
@@ -63,7 +83,11 @@ public class DadosController {
 			return true;
 		}
 	}
-	
+	/**
+	 * Método que controla os dados da CRUD dos clientes.
+	 * @param clienteInfo String com as informações do cliente, vindas da View.
+	 * @return retornará verdadeiro ou falso.
+	 */
 	public boolean editAddCliente(String[] clienteInfo) {
 		if(clienteInfo == null)
 			return false;
@@ -79,38 +103,68 @@ public class DadosController {
 			return true;
 		}
 	}
-	
+	/**
+	 * Método que controla os dados dos pedidos.
+	 * @param pedidoInfo String com as informações do pastel, vindas da View.
+	 * @param pedidoCliente String com as informações do pastel, vindas da View.
+	 * @param pedidoPastel String com as informações do pastel, vindas da View.
+	 * @param pedidoBebida String com as informações da bebida, vindas da View.
+	 * @return retornará verdadeiro ou falso
+	 */
 	public boolean editAddPedido(int pedidoInfo, Cliente pedidoCliente, ArrayList<Pastel> pedidoPastel, ArrayList<Bebida> pedidoBebida) {
-		if(pedidoCliente == null)
+		if(pedidoInfo == -1)
 			return false;
 		else {
 			Pedido p = new Pedido(pedidoCliente, pedidoPastel, pedidoBebida);
-			if(pedidoInfo != getClientes().size())
+			if(pedidoInfo != getPedidos().size())
 				d.editPedido(p, pedidoInfo);
 			else
 				d.AddPedido(p);
 			return true;
 		}
 	}
-	
+	/**
+	 * Método que deleta Pastel.
+	 * @param pos inteiro relacionado a posição, na ArrayList.
+	 * @return retornará somente verdadeiro.
+	 */
 	public boolean deletePastel(int pos) {
-		d.deletePastel(pos);
+		if(pos < 0)
+			return false;
+		else
+			d.deletePastel(pos);
 		return true;
 	}
-	
+	/**
+	 * Método que deleta Bebida.
+	 * @param pos inteiro relacionado a posição, na ArrayList.
+	 * @return retornará somente verdadeiro.
+	 */
 	public boolean deleteBebida(int pos) {
 		d.deleteBebida(pos);
 		return true;
 	}
-	
+	/**
+	 * Método que deleta Cliente.
+	 * @param pos inteiro relacionado a posição, na ArrayList.
+	 * @return retornará somente verdadeiro.
+	 */
 	public boolean deleteCliente(int pos) {
 		d.deleteCliente(pos);
 		return true;
 	}
-	
+	/**
+	 * Método que deleta Pedido.
+	 * @param pos inteiro relacionado a posição, na ArrayList.
+	 * @return retornará somente verdadeiro ou falso.
+	 */
 	public boolean deletePedido(int pos) {
-		d.deletePedido(pos);
-		return true;
+		if(pos < 0 || pos > d.getPedidos().size()) {
+			return false;
+		} else {
+			d.deletePedido(pos);
+			return true;
+		}
 	}
 	
 }

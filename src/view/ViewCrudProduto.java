@@ -9,6 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import controller.*;
+/**
+ * Essa classe possibilitará a intereção do programa com o usuário no quesito CRUD do Produto.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
 
 public class ViewCrudProduto implements ActionListener {
 		
@@ -32,7 +37,14 @@ public class ViewCrudProduto implements ActionListener {
 		private int posicao;
 		private int opcao;
 		private String janelaTitulo;
-		
+		/**
+		 * O método em questão relizar a interação do usuário com o Cadastro, Edição e Deleção do Produto.
+		 * Mostrando dados dos produtos, caso o usuário queira editá-los.
+		 * @param es inteiro relacionado com a escolha (Pastel, Bebida, Cadastro e Edição dos dois).
+		 * @param d Obejto que chama os dados do controlador DadosController.
+		 * @param p Objeto que chama a ViewProduto.
+		 * @param pos inteiro relacionado com o produto(Bebida ou Pastel) em sua posição na ArrayList.
+		 */
 		public void crudProduto(int es, DadosController d, ViewProduto p, int pos ){
 			
 			  	posicao = pos;
@@ -157,7 +169,9 @@ public class ViewCrudProduto implements ActionListener {
 			//System.out.print(borda.isSelected());
 			
 		}
-		
+		/**
+		 * Método que detecta as ações nos botões Cadastrar ou Deletar.
+		 */
 		public void actionPerformed(ActionEvent e) {
 			
 			Object src = e.getSource();
@@ -217,26 +231,34 @@ public class ViewCrudProduto implements ActionListener {
 				
 			}
 	}
-		
+		/**
+		 * Método que faz aparecer uma menssagem de sucesso ao excuir.
+		 */
 		public void mensagemSucessoExclusao() {
 			JOptionPane.showMessageDialog(null, "Os produtos foram excluidos com sucesso! =)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
-
+		/**
+		 * Método que faz aparecer uma menssagem de sucesso ao cadastrar.
+		 */
 		public void mensagemSucessoCadastro() {
 			JOptionPane.showMessageDialog(null, "Os produtos foram cadastrados com sucesso! =)", null, 
 					JOptionPane.INFORMATION_MESSAGE);
 			frame.dispose();
 		}
-
+		/**
+		 * Método que faz aparecer uma menssagem de erro ao cadastrar.
+		 */
 		public void mensagemErroCadastro() {
 			JOptionPane.showMessageDialog(null,"ERRO AO SALVAR OS Produtos! =( \n "
 					+ "Pode ter ocorrido o erro a seguir:  \n"
 					+ "1. Nem todos os campos foram preenchidos!! \n", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
-
+		/**
+		 * Método que faz aparecer uma menssagem de erro ao excuir Pastel.
+		 */
 		public void mensagemErroExclusaoPastel() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir o Pastel!! :(\n "
 					+ "Veja se o pastel estï¿½ cadastrado\n"
@@ -244,7 +266,9 @@ public class ViewCrudProduto implements ActionListener {
 					+ "o pastel e tente novamente.", null, 
 					JOptionPane.ERROR_MESSAGE);
 		}
-		
+		/**
+		 * Método que faz aparecer uma menssagem de erro ao excuir Bebida.
+		 */
 		public void mensagemErroExclusaoBebida() {
 			JOptionPane.showMessageDialog(null,"Ocorreu um erro ao excluir a bebida!! :(\n "
 					+ "Verifique se a bebida estï¿½ cadastrada\n"

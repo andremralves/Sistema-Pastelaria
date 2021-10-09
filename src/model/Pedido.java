@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Essa classe captura os dados referentes ao Pedido.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class Pedido {
     private int numeroPedido;
     private Cliente clienteSelecionado;
@@ -10,6 +16,13 @@ public class Pedido {
     private double valorTotal;
     static private int count = 1;
 
+	/**
+     * Método Pedido, realiza a captura.
+     * @param c Objeto Clientes, relação de agregção.
+     * @param p uma ArrayList Pastel que armazena o pastel selecionado.
+     * @param b uma ArrayList Bebida que armazena a bebida selecionada.
+     */
+	
     public Pedido(Cliente c, ArrayList<Pastel> p, ArrayList<Bebida> b) {
         numeroPedido = count++;
         this.clienteSelecionado = c;
@@ -22,7 +35,7 @@ public class Pedido {
         return this.numeroPedido;
     }
 
-    public void setgetNumeroPedido(int p) {
+    public void setNumeroPedido(int p) {
         this.numeroPedido = p;
     }
 
@@ -34,19 +47,19 @@ public class Pedido {
         this.clienteSelecionado = p;
     }
 
-    public ArrayList<Pastel> getPasteissSelecionados() {
+    public ArrayList<Pastel> getPasteisSelecionados() {
         return this.pasteisSelecionados;
     }
 
-    public void setArrayPasteissSelecionados(ArrayList<Pastel> p) {
+    public void setArrayPasteisSelecionados(ArrayList<Pastel> p) {
         this.pasteisSelecionados = p;
     }
     
-    public ArrayList<Bebida> getBebidassSelecionadss() {
+    public ArrayList<Bebida> getBebidasSelecionadas() {
         return this.bebidasSelecionadas;
     }
 
-    public void setArrayBebidasSelecionadss(ArrayList<Bebida> b) {
+    public void setArrayBebidasSelecionadas(ArrayList<Bebida> b) {
         this.bebidasSelecionadas = b;
     }
 
@@ -57,7 +70,12 @@ public class Pedido {
     public void setValorTotal(double vt) {
         this.valorTotal = vt;
     }
-
+	/**
+     * Método que realiza o cálculo de valor total do pedido.
+     * @param p ArrayList dos pasteis selecionados.
+     * @param b ArrayList das bebidas selecionadas.
+     * @return valor total esperado do pedido.
+     */
     public double calculaValorTotal(ArrayList<Pastel> p, ArrayList<Bebida> b) {
         double total = 0;
         for(int i = 0; i < p.size(); i++) {

@@ -6,6 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import controller.*;
 
+/**
+ * Essa classe possibilitará a intereção do programa com o usuário no Menu Principal.
+ * @author Daniel Rocha Oliveira e André Macedo Rodrigues Alves
+ * @version 1.0 (Out 2021)
+ */
+
 public class ViewMenu implements ActionListener {
 		private static JFrame frame = new JFrame("Menu Pastelaria");
 		private static JLabel title = new JLabel("Pastelaria");
@@ -13,7 +19,10 @@ public class ViewMenu implements ActionListener {
 		private static JButton pedidos = new JButton("Pedidos");
 		private static JButton produtos = new JButton("Produtos");
 		private static DadosController dados = new DadosController();
-		
+		/**
+		 * Esse método construtor é responsável por conigurar toda
+		 * a interação com o usuário no campo do Menu Principal.
+		 */
 		public ViewMenu(){
 	    title.setFont(new Font("Arial Black", Font.BOLD, 16));
 		title.setBounds(60, 10, 100, 30);
@@ -33,7 +42,10 @@ public class ViewMenu implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		}
-		
+		/**
+		 * Método main do Código, responsável pelo início da execução desse.
+		 * @param args args.
+		 */
 		public static void main(String[] args) {
 			
 			ViewMenu menu = new ViewMenu();
@@ -42,7 +54,10 @@ public class ViewMenu implements ActionListener {
 			pedidos.addActionListener(menu);
 			produtos.addActionListener(menu);
 	   }
-	   
+	   /**
+		 * Método que detecta as ações nos botões para vizualizar as Views, do cliente, pedido
+		 * ou produto.
+		 */
 	   public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
